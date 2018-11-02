@@ -1,16 +1,21 @@
 build: false
+
 platform: x64
+
 install:
   - set PATH=%PATH%;%PYTHON%/Scripts/
   - pip.exe install conan
   - conan user # Create the conan data directory
+
 build_script:
   - mkdir build && cd build
   - conan install .. --build
   - cmake .. -G "%CMAKE_GENERATOR%"
   - cmake --build . --config Release
+
 test_script:
   - cd bin && test_hello.exe
+
 environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
