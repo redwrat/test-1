@@ -1,4 +1,4 @@
-ariables:
+variables:
     CONAN_USERNAME: "admin"
     CONAN_REFERENCE: "hello/0.1.0"
     CONAN_CHANNEL: "testing"
