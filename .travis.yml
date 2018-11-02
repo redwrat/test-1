@@ -5,5 +5,5 @@ script:
   - conan install .. --build
   - cmake -H.. -B.
   - cmake --build .
-  - ./bin/hello_example
+  - ./bin/test_hello
 
