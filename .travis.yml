@@ -13,3 +13,26 @@ script:
   - cmake --build .
   - ./bin/test_hello
 
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+      env:
+         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
+          packages:
+            - clang-7
+      env:
+         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
