@@ -1,13 +1,16 @@
 build: false
 
 environment:
-    PYTHON: "C:\\Python37"
+    PYTHON: "C:\\Python27"
+    PYTHON_VERSION: "2.7.8"
+    PYTHON_ARCH: "32"
 
     CONAN_REFERENCE: "hello/0.1.0"
-    CONAN_USERNAME: "user"
-    CONAN_LOGIN_USERNAME: "user"
-    CONAN_CHANNEL: "channel"
-    
+    CONAN_USERNAME: "demo"
+    CONAN_LOGIN_USERNAME: "demo"
+    CONAN_CHANNEL: "testing"
+    CONAN_UPLOAD: "https://bintray.com/sdukshis/conan"
+
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14

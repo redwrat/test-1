@@ -1,6 +1,7 @@
 from conans import ConanFile, CMake, tools
 
-Сlass HelloConan(ConanFile):
+
+class HelloConan(ConanFile):
     name = "hello"
     version = "0.1.0"
     license = "MIT"
@@ -21,13 +22,8 @@ from conans import ConanFile, CMake, tools
         cmake.configure()
         cmake.build()
 
-        # Explicit way:
-        # self.run('cmake %s/hello %s'
-        #          % (self.source_folder, cmake.command_line))
-        # self.run("cmake --build . %s" % cmake.build_config)
-
     def package(self):
-        self.copy("*.h", dst="include", src="hello")
+        self.copy("*.h", dst="include", src="include")
         self.copy("*hello.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
