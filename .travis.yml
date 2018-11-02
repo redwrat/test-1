@@ -6,13 +6,6 @@ install:
   # Automatic detection of your arch, compiler, etc.
   - conan user
 
-#sudo: required
-#install:
-#  # Install conan
-#  - sudo -E pip install conan
-#  # Automatic detection of your arch, compiler, etc.
-#  - conan user
-
 script:
   - mkdir _output && cd _output
   - conan install .. --build
@@ -42,6 +35,15 @@ matrix:
             - clang-7
       env:
          - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
+sudo: required
+install:
+  # Install conan
+  - sudo -E pip install conan
+  # Automatic detection of your arch, compiler, etc.
+  - conan user
+
+matrix:
   include:
     - os: osx
       osx_image: xcode9.4
