@@ -1,7 +1,9 @@
 language: cpp
 
 script:
-  - cmake -H. -B_output
-  - cmake --build _output --config Release
-  - ./_output/hello
+  - mkdir _output && cd _output
+  - conan install .. --build
+  - cmake -H.. -B.
+  - cmake --build .
+  - ./bin/hello_example
 
