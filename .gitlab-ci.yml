@@ -1,9 +1,9 @@
-variables:
+ariables:
     CONAN_USERNAME: "admin"
     CONAN_REFERENCE: "hello/0.1.0"
     CONAN_CHANNEL: "testing"
     CONAN_LOGIN_USERNAME: "admin"
-#    CONAN_UPLOAD: http://185.185.69.25:8081/artifactory/api/conan/conan-local
+    CONAN_UPLOAD: http://185.185.71.61:8081/artifactory/api/conan/conan-local
     
 .build-template: &build-template
     before_script:
@@ -12,23 +12,23 @@ variables:
     script:
         - python build.py
 
-gcc-4.9:
-    image: lasote/conangcc49
-    variables:
-        CONAN_GCC_VERSIONS: "4.9"
-    <<: *build-template
+#gcc-4.9:
+#    image: lasote/conangcc49
+#    variables:
+#        CONAN_GCC_VERSIONS: "4.9"
+#    <<: *build-template
 
-gcc-5:
-    image: lasote/conangcc5
-    variables:
-        CONAN_GCC_VERSIONS: "5"
-    <<: *build-template
+#gcc-5:
+#    image: lasote/conangcc5
+#    variables:
+#        CONAN_GCC_VERSIONS: "5"
+#    <<: *build-template
 
-gcc-6:
-    image: lasote/conangcc6
-    variables:
-        CONAN_GCC_VERSIONS: "6"
-    <<: *build-template
+#gcc-6:
+#    image: lasote/conangcc6
+#    variables:
+#        CONAN_GCC_VERSIONS: "6"
+#    <<: *build-template
 
 gcc-7:
     image: lasote/conangcc7
@@ -36,23 +36,11 @@ gcc-7:
         CONAN_GCC_VERSIONS: "7"
     <<: *build-template
 
-gcc-8.2:
-    image: gcc:8.2
-    variables:
-        CONAN_GCC_VERSIONS: "8.2"
-    before_script:
-        - apt-get install python python-pip
-        - pip install conan
-        - pip install --upgrade conan_package_tools
-        - conan user
-    script:
-        - python build.py
-
-clang-3.9:
-    image: lasote/conanclang39
-    variables:
-        CONAN_CLANG_VERSIONS: "3.9"
-    <<: *build-template
+#clang-3.9:
+#    image: lasote/conanclang39
+#    variables:
+#        CONAN_CLANG_VERSIONS: "3.9"
+#    <<: *build-template
 
 clang-4.0:
     image: lasote/conanclang40
