@@ -36,6 +36,18 @@ gcc-7:
         CONAN_GCC_VERSIONS: "7"
     <<: *build-template
 
+gcc-8.2:
+    image: gcc:8.2
+    variables:
+        CONAN_GCC_VERSIONS: "8.2"
+    before_script:
+        - apt-get install python python-pip
+        - pip install conan
+        - pip install --upgrade conan_package_tools
+        - conan user
+    script:
+        - python build.py
+
 clang-3.9:
     image: lasote/conanclang39
     variables:
