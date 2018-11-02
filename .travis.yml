@@ -1,6 +1,10 @@
 language: cpp
-
+dist: trusty
 sudo: required
+
+before_install:
+    - eval "${MATRIX_EVAL}"
+
 install:
   # Install conan
   - sudo -E pip install conan
@@ -10,22 +14,52 @@ install:
 script:
   - mkdir _output && cd _output
   - conan install .. --build
-  - cmake -H.. -B.
+  - cmake ..
   - cmake --build .
   - ./bin/test_hello
 
 matrix:
   include:
+    # - os: linux
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #       packages:
+    #         - gcc-5
+    #         - g++-5
+    #   env:
+    #      - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    # - os: linux
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #       packages:
+    #         - gcc-6
+    #         - g++-6
+    #   env:
+    #      - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
     - os: linux
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - gcc-6
-            - g++-6
+            - gcc-7
+            - g++-7
       env:
-         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    # - os: linux
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-trusty-6.0
+    #       packages:
+    #         - clang-6.0
+    #   env:
+    #      - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
     - os: linux
       addons:
         apt:
@@ -36,7 +70,6 @@ matrix:
             - clang-7
       env:
          - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
-  include:
     - os: osx
       osx_image: xcode9.4
       env:
